@@ -21,6 +21,25 @@ class App extends Component {
 		]
 	}
 
+	nameChangedHandler = (event) => {
+		this.setState({
+			persons : [
+				{
+					name : 'Ajayi',
+					age: 24
+				},
+				{
+					name : event.target.value,
+					age : 22,
+				},
+				{
+					name : 'Olawales',
+					age : 20
+				}
+			]
+		})
+	}
+
 	switchNameHandler = (newName) => {
 		this.setState({ //compares the already declared person object to the below persons object
 			persons: [
@@ -40,12 +59,22 @@ class App extends Component {
 		})
 		// console.log('Clicked!');
 	}
+
   render() {
+
+  	const style = {
+  		backgroundColor : 'white',
+  		font : 'inherit',
+  		border : '1px solid blue',
+  		padding : '8px',
+  		cursor : 'pointer'
+  	};
+
     return (
       <div className="App">
         <h1> Hi, Im a react app </h1>
         <p> This is really working! </p>
-        <button onClick={ () => this.switchNameHandler('Maximillian') }> Switch Nme</button>
+        <button style={style} onClick={ () => this.switchNameHandler('Maximillian') }> Switch Nme</button>
 
 	    <Person 
 	    	name={this.state.persons[0].name} 
@@ -53,7 +82,8 @@ class App extends Component {
 	    <Person 
 	    	name={this.state.persons[1].name} 
 	    	age={this.state.persons[1].age}
-	    	whenClicked={this.switchNameHandler.bind(this, 'Nurudeen')}> My Hoppies : Writing Code 
+	    	whenClicked={this.switchNameHandler.bind(this, 'Nurudeen')}
+	    	whenChanged={this.nameChangedHandler}> My Hoppies : Writing Code 
 	    </Person> 
 	    <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/> 
 
