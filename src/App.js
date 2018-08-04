@@ -76,6 +76,9 @@ class App extends Component {
         <p> This is really working! </p>
         <button style={style} onClick={ () => this.switchNameHandler('Maximillian') }> Switch Nme</button>
 
+		{/* component Person is a nested child component under the root/the parent component named "app"  */}
+		{/* each child or parent component needs to return / render some JSX CODE*/}
+		{/* JSX is just a js syntactic sugar that allows u to write htmlish code instead of nested React.createElement calls */}
 	    <Person 
 	    	name={this.state.persons[0].name} 
 	    	age={this.state.persons[0].age}/> 
