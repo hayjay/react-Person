@@ -1,6 +1,7 @@
 import React from 'react';
 import './Person.css';
 // import './App.css';
+//props allows you to pass data down to the component
 const person = (props) => { //props allows you to be able to interact with the component properties when used in APp.js
 	// but when using classed based components, to asses props property, we need use this.props instead
 	return (
@@ -13,3 +14,5 @@ const person = (props) => { //props allows you to be able to interact with the c
 			</div>
 		)
 };
+
+export default person
