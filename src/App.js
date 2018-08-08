@@ -36,7 +36,12 @@ class App extends Component {
 					name : 'Olawales',
 					age : 20
 				}
-			]
+			],
+			otherState : 'some other value',
+			
+			//set the person state to false by default not to show the person div
+			showPersons: false
+
 		})
 	}
 
@@ -60,6 +65,11 @@ class App extends Component {
 		// console.log('Clicked!');
 	}
 
+	//help check if wewant to display this div inside it or not
+	togglePersonsHandler = () => {
+
+	}
+
   render() {
 
   	const style = {
@@ -74,20 +84,27 @@ class App extends Component {
       <div className="App">
         <h1> Hi, Im a react app </h1>
         <p> This is really working! </p>
-        <button style={style} onClick={ () => this.switchNameHandler('Maximillian') }> Switch Nme</button>
+        <button style={style} onClick={this.togglePersonsHandler}> Switch Nme</button>
 
 		{/* component Person is a nested child component under the root/the parent component named "app"  */}
 		{/* each child or parent component needs to return / render some JSX CODE*/}
 		{/* JSX is just a js syntactic sugar that allows u to write htmlish code instead of nested React.createElement calls */}
-	    <Person 
-	    	name={this.state.persons[0].name} 
-	    	age={this.state.persons[0].age}/> 
-	    <Person 
-	    	name={this.state.persons[1].name} 
-	    	age={this.state.persons[1].age}
-	    	whenClicked={this.switchNameHandler.bind(this, 'Nurudeen')}
-	    	whenChanged={this.nameChangedHandler}> My Hoppies : Writing Code 
-	    </Person> 
+		{
+			this.state.showPersons ? 
+			<div>
+				<Person 
+					name={this.state.persons[0].name} 
+					age={this.state.persons[0].age}/> 
+				<Person 
+					name={this.state.persons[1].name} 
+					age={this.state.persons[1].age}
+					whenClicked={this.switchNameHandler.bind(this, 'Nurudeen')}
+					whenChanged={this.nameChangedHandler}> My Hoppies : Writing Code 
+				</Person>
+			</div> : null
+		}
+		
+	     
 	    <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/> 
 
       </div>
