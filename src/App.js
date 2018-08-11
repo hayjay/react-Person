@@ -46,24 +46,15 @@ class App extends Component {
 		})
 	}
 
-	switchNameHandler = (newName) => {
-		this.setState({ //compares the already declared person object to the below persons object
-			persons: [
-				{
-					name : newName,
-					age: 24
-				},
-				{
-					name : 'Nurudeen',
-					age : 22,
-				},
-				{
-					name : 'Olawales',
-					age : 90
-				}
-			]
-		})
-		// console.log('Clicked!');
+	deletePersonHandler = (personIndex) => {
+		// const persons = this.state.persons.slice();  // pull the array of persons then copy it and save into persons 
+		const persons = [...this.state.persons]; //using the spread operator helps copy the  declared persons array and paste into the persons variable
+		persons.splice(personIndex, 1); //just like array.splice ..the second parameter of array splice determines how
+		// ..the second parameter of array splice determines how many elements u want to delete
+		// ..the first parameter helps detemins which index to start the deletion from
+		this.setState(({ //update the initially created persons array with set state after splicing the current person index
+			persons : persons
+		}))
 	}
 
 	//help check if wewant to display this div inside it or not
@@ -96,8 +87,9 @@ class App extends Component {
 				{/* loop through the persons array using map method with a function (callback) inside the map menthod as the map syntax */}
 
 				{
-					this.state.persons.map(eachPerson => { //eachPerson is an anonymous function to the map function
+					this.state.persons.map((eachPerson, current_index) => { //eachPerson is an anonymous function to the map function
 						return <Person 
+									whenClicked = {() => this.deletePersonHandler(current_index)}
 									name={eachPerson.name}
 									age={eachPerson.age}
 								/>
@@ -118,8 +110,6 @@ class App extends Component {
 		{/* each child or parent component needs to return / render some JSX CODE*/}
 		{/* JSX is just a js syntactic sugar that allows u to write htmlish code instead of nested React.createElement calls */}
 		{persons}
-	    <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/> 
-
       </div>
 	  // React.createElement('div', {className:'App'}, React.createElement('h1', null, 'Does this work now?'))
     );
