@@ -18,7 +18,9 @@ class App extends Component {
 				name : 'Olawales',
 				age : 20
 			}
-		]
+		],
+		otherState : 'some other value',
+		showPersons : false
 	}
 
 	nameChangedHandler = (event) => {
@@ -37,10 +39,9 @@ class App extends Component {
 					age : 20
 				}
 			],
-			otherState : 'some other value',
+			otherState : 'some other value'
 			
 			//set the person state to false by default not to show the person div
-			showPersons: false
 
 		})
 	}
@@ -67,9 +68,16 @@ class App extends Component {
 
 	//help check if wewant to display this div inside it or not
 	togglePersonsHandler = () => {
-
+		const doesShow = this.showPersons;
+		this.setState({ //setState updates a class variable or function
+			//basically, this is where the toggle lies
+			showPersons : !doesShow //returns true because the default state is false
+		})
 	}
 
+	
+
+	//the render method always gets called when the page loads initially
   render() {
 
   	const style = {
@@ -78,33 +86,38 @@ class App extends Component {
   		border : '1px solid blue',
   		padding : '8px',
   		cursor : 'pointer'
-  	};
+	  };
+	  
+	let persons = null;
+
+	if( this.state.showPersons ){ //checks if showPersons object is true
+		persons = ( //asign jsX html code to persons
+			<div> 
+				{/* loop through the persons array using map method with a function (callback) inside the map menthod as the map syntax */}
+
+				{
+					this.state.persons.map(eachPerson => { //eachPerson is an anonymous function to the map function
+						return <Person 
+									name={eachPerson.name}
+									age={eachPerson.age}
+								/>
+					})
+				}
+				
+			</div>
+		);
+	}
 
     return (
       <div className="App">
         <h1> Hi, Im a react app </h1>
         <p> This is really working! </p>
-        <button style={style} onClick={this.togglePersonsHandler}> Switch Nme</button>
+        <button style={style} onClick={this.togglePersonsHandler}> Toggle Person</button>
 
 		{/* component Person is a nested child component under the root/the parent component named "app"  */}
 		{/* each child or parent component needs to return / render some JSX CODE*/}
 		{/* JSX is just a js syntactic sugar that allows u to write htmlish code instead of nested React.createElement calls */}
-		{
-			this.state.showPersons ? 
-			<div>
-				<Person 
-					name={this.state.persons[0].name} 
-					age={this.state.persons[0].age}/> 
-				<Person 
-					name={this.state.persons[1].name} 
-					age={this.state.persons[1].age}
-					whenClicked={this.switchNameHandler.bind(this, 'Nurudeen')}
-					whenChanged={this.nameChangedHandler}> My Hoppies : Writing Code 
-				</Person>
-			</div> : null
-		}
-		
-	     
+		{persons}
 	    <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/> 
 
       </div>
