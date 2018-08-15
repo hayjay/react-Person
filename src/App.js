@@ -117,7 +117,10 @@ class App extends Component {
       <div className="App">
         <h1> Hi, Im a react app </h1>
         <p> This is really working! </p>
+		{/* creating an input field with a change listerner below */}
+		<input type="text" name=""/>
         <button style={style} onClick={this.togglePersonsHandler}> Toggle Person</button>
+
 
 		{/* component Person is a nested child component under the root/the parent component named "app"  */}
 		{/* each child or parent component needs to return / render some JSX CODE*/}
