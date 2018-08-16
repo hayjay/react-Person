@@ -94,7 +94,7 @@ class App extends Component {
 		//to split the letters, we need to first split what ever the user input below
 		//then after spliting, we need map each of the letters   
 	  let charList = this.state.userInput.split('');
-	 charList = charList.map(each_letter => { //keep in mind : map doesnt touch the original array, it only work on the array and save into the charList new const variable
+	 	const eachString = charList.map(each_letter => { //keep in mind : map doesnt touch the original array, it only work on the array and save into the charList new const variable
 		return <Char character={each_letter} />
 	});
   	const style = {
@@ -140,7 +140,7 @@ class App extends Component {
 
 		{/* the below validation component recieves the text length as a prop */}
 		<Validation inputLength={this.state.userInput.length}/>
-		{charList}
+		{eachString}
 
         <button style={style} onClick={this.togglePersonsHandler}> Toggle Person</button>
 
