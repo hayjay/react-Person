@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person'; //importing component name from the folder name Person
-
+import Validation from './Validation/Validation';
 
 class App extends Component {
 	state = {
@@ -128,6 +128,9 @@ class App extends Component {
 		<input type="text" name="" onChange={this.changeInput} value={this.state.userInput}/>
 
 		<p> {this.state.userInput} </p>
+
+		{/* the below validation component recieves the text length as a prop */}
+		<Validation inputLength={this.state.userInput.length}/>
 
         <button style={style} onClick={this.togglePersonsHandler}> Toggle Person</button>
 
