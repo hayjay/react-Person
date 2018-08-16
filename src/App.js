@@ -94,8 +94,8 @@ class App extends Component {
 		//to split the letters, we need to first split what ever the user input below
 		//then after spliting, we need map each of the letters   
 	  let charList = this.state.userInput.split('');
-	 	const eachString = charList.map(each_letter => { //keep in mind : map doesnt touch the original array, it only work on the array and save into the charList new const variable
-		return <Char character={each_letter} />
+	 	const eachString = charList.map((each_letter, index) => { //keep in mind : map doesnt touch the original array, it only work on the array and save into the charList new const variable
+		return <Char character={each_letter} key={index} />
 	});
   	const style = {
   		backgroundColor : 'white',
