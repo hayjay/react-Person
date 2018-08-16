@@ -88,6 +88,21 @@ class App extends Component {
 		})
 	}
 
+	deleteCharacterByIndex = ( index ) => {
+		// to delete each letter follow the below step :
+			//split the userInput value in the text box
+			//remove one of the letter at the index position just one character each to be removed splice(index, 1)
+			//create a variable called updatedText to join the remaining user input values after it must have been modified by removing one element using splice
+			//join the splitted elements back to an array 
+		
+		const text = this.state.userInput.split(''); //splict the user input so we can perform a splice function on each of the letter
+		text.splice(index,1); //removes the passed in clicked letter from the array...we track each letter with its index
+		const updatedText = text.join('');
+		this.setState({ //then finally, update the userInput field
+			userInput : updatedText
+		});
+	}
+
 	//the render method always gets called when the page loads initially
   render() {
 	  //maps string letter in the user input field we can map each of them becuse javascript strings are arrays.
@@ -95,7 +110,7 @@ class App extends Component {
 		//then after spliting, we need map each of the letters   
 	  let charList = this.state.userInput.split('');
 	 	const eachString = charList.map((each_letter, index) => { //keep in mind : map doesnt touch the original array, it only work on the array and save into the charList new const variable
-		return <Char character={each_letter} key={index} />
+		return <Char character={each_letter} key={index} clicked={() => this.deleteCharacterByIndex(index)} />
 	});
   	const style = {
   		backgroundColor : 'white',
