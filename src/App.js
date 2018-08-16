@@ -22,8 +22,16 @@ class App extends Component {
 				age : 20
 			}
 		],
+		//
+		userInput : '', //empty variable declared for the purpose of changehandler user input
 		otherState : 'some other value',
 		showPersons : false
+	}
+
+	changeInput = (event) => {//of course it will accept an event from the text input so y not passing event parameter
+		this.setState({
+			userInput : event.target.value
+		});
 	}
 
 	nameChangedHandler = (event, person_id) => {
@@ -77,8 +85,6 @@ class App extends Component {
 		})
 	}
 
-	
-
 	//the render method always gets called when the page loads initially
   render() {
 
@@ -118,7 +124,11 @@ class App extends Component {
         <h1> Hi, Im a react app </h1>
         <p> This is really working! </p>
 		{/* creating an input field with a change listerner below */}
-		<input type="text" name=""/>
+		<hr/>
+		<input type="text" name="" onChange={this.changeInput} value={this.state.userInput}/>
+
+		<p> {this.state.userInput} </p>
+
         <button style={style} onClick={this.togglePersonsHandler}> Toggle Person</button>
 
 
