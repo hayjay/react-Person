@@ -1,5 +1,6 @@
 import React from 'react';
 import './Person.css';
+import Radium from 'radium';
 // import './App.css';
 //props allows you to pass data down to the component
 const person = (props) => { //props allows you to be able to interact with the component properties when used in APp.js
@@ -15,4 +16,4 @@ const person = (props) => { //props allows you to be able to interact with the c
 		)
 };
 
-export default person
+export default Radium(person);

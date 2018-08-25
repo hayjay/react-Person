@@ -26,6 +26,10 @@
   color: red;
 }
 
+.green{
+  color:#5cb85c;
+}
+
 .bold {
   font-weight: bold;
 }

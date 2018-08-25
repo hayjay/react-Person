@@ -3,7 +3,7 @@ import './App.css';
 import Person from './Person/Person'; //importing component name from the folder name Person
 import Validation from './Validation/Validation';
 import Char from './Char/Char';
-
+import Radium from 'radium';
 class App extends Component {
 	state = {
 		persons: [
@@ -118,7 +118,11 @@ class App extends Component {
 			font : 'inherit',
 			border : '1px solid blue',
 			padding : '8px',
-			cursor : 'pointer'
+			cursor : 'pointer',
+			':hover' : {
+				backgroundColor : 'lightgreen',
+				color : 'black'
+			}
 	  };
 	  
 	let persons = null;
@@ -144,14 +148,21 @@ class App extends Component {
 		);
 		//update toggle person button when clickcked
 		style.backgroundColor = 'red';
+		///using radium feature ability to assign a property on css sudo selector
+		style[':hover'] = {
+			backgroundColor : 'lightred',
+			color : 'black'
+		}
 	}
 
 	//results in a class like red bold so we can use as two classes
 	//which basically returns an array
+
+	// ADDING CLASS TO REACT JS DYNAMICALLY WITH AN IF STATEMENT 
 	const classes = [];
 
 	if(this.state.persons.length <= 2){
-		classes.push('red'); //classes  = ['red'];
+		classes.push('green'); //classes  = ['red'];
 	}
 
 	if( this.state.persons.length <= 1){ //we refused to use elseif becus we want the two conditions to work
@@ -185,4 +196,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
