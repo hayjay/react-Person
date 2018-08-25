@@ -3,7 +3,7 @@ import './App.css';
 import Person from './Person/Person'; //importing component name from the folder name Person
 import Validation from './Validation/Validation';
 import Char from './Char/Char';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 class App extends Component {
 	state = {
 		persons: [
@@ -129,22 +129,24 @@ class App extends Component {
 
 	if( this.state.showPersons ){ //checks if showPersons object is true
 		persons = ( //asign jsX html code to persons
-			<div> 
-				{/* loop through the persons array using map method with a function (callback) inside the map menthod as the map syntax */}
+			<StyleRoot>
+				<div> 
+					{/* loop through the persons array using map method with a function (callback) inside the map menthod as the map syntax */}
 
-				{
-					this.state.persons.map((eachPerson, current_index) => { //eachPerson is an anonymous function to the map function
-						return <Person 
-									whenClicked = {() => this.deletePersonHandler(current_index)}
-									name={eachPerson.name}
-									age={eachPerson.age}
-									key={eachPerson.id} //to make sure and track the current index of each element we can manipulate with this
-									whenChanged={(event) => this.nameChangedHandler(event, eachPerson.id)}
-								/>
-					})
-				}
-				
-			</div>
+					{
+						this.state.persons.map((eachPerson, current_index) => { //eachPerson is an anonymous function to the map function
+							return <Person 
+										whenClicked = {() => this.deletePersonHandler(current_index)}
+										name={eachPerson.name}
+										age={eachPerson.age}
+										key={eachPerson.id} //to make sure and track the current index of each element we can manipulate with this
+										whenChanged={(event) => this.nameChangedHandler(event, eachPerson.id)}
+									/>
+						})
+					}
+					
+				</div>
+			</StyleRoot>
 		);
 		//update toggle person button when clickcked
 		style.backgroundColor = 'red';
