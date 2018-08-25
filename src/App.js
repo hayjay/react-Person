@@ -113,11 +113,12 @@ class App extends Component {
 		return <Char character={each_letter} key={index} clicked={() => this.deleteCharacterByIndex(index)} />
 	});
   	const style = {
-  		backgroundColor : 'white',
-  		font : 'inherit',
-  		border : '1px solid blue',
-  		padding : '8px',
-  		cursor : 'pointer'
+			backgroundColor : 'green',
+			color : 'white',
+			font : 'inherit',
+			border : '1px solid blue',
+			padding : '8px',
+			cursor : 'pointer'
 	  };
 	  
 	let persons = null;
@@ -141,12 +142,25 @@ class App extends Component {
 				
 			</div>
 		);
+		//update toggle person button when clickcked
+		style.backgroundColor = 'red';
 	}
 
+	//results in a class like red bold so we can use as two classes
+	//which basically returns an array
+	const classes = [];
+
+	if(this.state.persons.length <= 2){
+		classes.push('red'); //classes  = ['red'];
+	}
+
+	if( this.state.persons.length <= 1){ //we refused to use elseif becus we want the two conditions to work
+		classes.push('bold'); //classes = ['red', 'bold'];
+	}
     return (
       <div className="App">
         <h1> Hi, Im a react app </h1>
-        <p> This is really working! </p>
+        <p className={classes.join(' ')}> This is really working! </p>
 		{/* creating an input field with a change listerner below */}
 		<hr/>
 		<input type="text" name="" onChange={this.changeInput} value={this.state.userInput}/>

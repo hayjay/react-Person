@@ -16,4 +16,8 @@ const validation = (props) => {
     )
 };
 
+//this component is basically a validation component that checks if an input text is 
+// less than / equal 5 then returns text too short else, returns the default validationMsg variable which is text long enuf with a JSX format
+//of course always export functionname named validation here... for usage in other files
+
 export default validation;
