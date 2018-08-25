@@ -146,7 +146,7 @@ class App extends Component {
 				</div>
 		);
 		//update toggle person button when clickcked
-		style.backgroundColor = 'red';
+		style.backgroundColor = 'red'; //mmx
 		// ///using radium feature ability to assign a property on css sudo selector
 		// style[':hover'] = {
 		// 	backgroundColor : 'lightred',
