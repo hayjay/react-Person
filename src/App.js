@@ -3,7 +3,6 @@ import './App.css';
 import Person from './Person/Person'; //importing component name from the folder name Person
 import Validation from './Validation/Validation';
 import Char from './Char/Char';
-import Radium, { StyleRoot } from 'radium';
 class App extends Component {
 	state = {
 		persons: [
@@ -119,17 +118,16 @@ class App extends Component {
 			border : '1px solid blue',
 			padding : '8px',
 			cursor : 'pointer',
-			':hover' : {
-				backgroundColor : 'lightgreen',
-				color : 'black'
-			}
+			// ':hover' : {
+			// 	backgroundColor : 'lightgreen',
+			// 	color : 'black'
+			// }
 	  };
 	  
 	let persons = null;
 
 	if( this.state.showPersons ){ //checks if showPersons object is true
 		persons = ( //asign jsX html code to persons
-			<StyleRoot>
 				<div> 
 					{/* loop through the persons array using map method with a function (callback) inside the map menthod as the map syntax */}
 
@@ -146,15 +144,14 @@ class App extends Component {
 					}
 					
 				</div>
-			</StyleRoot>
 		);
 		//update toggle person button when clickcked
 		style.backgroundColor = 'red';
-		///using radium feature ability to assign a property on css sudo selector
-		style[':hover'] = {
-			backgroundColor : 'lightred',
-			color : 'black'
-		}
+		// ///using radium feature ability to assign a property on css sudo selector
+		// style[':hover'] = {
+		// 	backgroundColor : 'lightred',
+		// 	color : 'black'
+		// }
 	}
 
 	//results in a class like red bold so we can use as two classes
@@ -198,4 +195,4 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
