@@ -160,19 +160,19 @@ class App extends Component {
 	//which basically returns an array
 
 	// ADDING CLASS TO REACT JS DYNAMICALLY WITH AN IF STATEMENT 
-	const classes = [];
+	const assignedClasses = [];
 
 	if(this.state.persons.length <= 2){
-		classes.push( classes.red ); //classes  = ['red'];
+		assignedClasses.push( classes.red ); //classes  = ['red'];
 	}
 
 	if( this.state.persons.length <= 1){ //we refused to use elseif becus we want the two conditions to work
-		classes.push( classes.bold ); //classes = ['red', 'bold'];
+		assignedClasses.push( classes.bold ); //classes = ['red', 'bold'];
 	}
     return (
       <div className="{classes.App}">
         <h1> Hi, Im a react app </h1>
-        <p className={classes.join(' ')}> This is really working! </p>
+        <p className={assignedClasses.join(' ')}> This is really working! </p>
 		{/* creating an input field with a change listerner below */}
 		<hr/>
 		<input type="text" name="" onChange={this.changeInput} value={this.state.userInput}/>
