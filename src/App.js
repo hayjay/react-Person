@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css'; //becus weve manipulated the config vars ..
+//such as webpack.config.js which would allow us use any of the css classes in an object..
+//  format like classes.classname declared in the css files basically, css loader allows us to do this.
 import Person from './Person/Person'; //importing component name from the folder name Person
 import Validation from './Validation/Validation';
 import Char from './Char/Char';
@@ -161,14 +163,14 @@ class App extends Component {
 	const classes = [];
 
 	if(this.state.persons.length <= 2){
-		classes.push('green'); //classes  = ['red'];
+		classes.push( classes.red ); //classes  = ['red'];
 	}
 
 	if( this.state.persons.length <= 1){ //we refused to use elseif becus we want the two conditions to work
-		classes.push('bold'); //classes = ['red', 'bold'];
+		classes.push( classes.bold ); //classes = ['red', 'bold'];
 	}
     return (
-      <div className="App">
+      <div className="{classes.App}">
         <h1> Hi, Im a react app </h1>
         <p className={classes.join(' ')}> This is really working! </p>
 		{/* creating an input field with a change listerner below */}
