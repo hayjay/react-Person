@@ -14,6 +14,28 @@
   color: white;
 }
 
+.App button{
+  border: 1px solid blue;
+  padding: 16px;
+  background-color: green;
+  font:inherit;
+  color: white;
+}
+
+.App button:hover{ /* sudo selector */
+  background-color: lightgreen;
+  color: black;
+}
+
+.App button.Red{
+  background-color: red;
+}
+
+.App button.Red:hover{
+  background-color:salmon;
+  color:black;
+}
+
 .App-title {
   font-size: 1.5em;
 }

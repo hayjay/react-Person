@@ -106,6 +106,8 @@ class App extends Component {
 
 	//the render method always gets called when the page loads initially
   render() {
+	  let person = null;
+	  let btnClass = '';
 	  //maps string letter in the user input field we can map each of them becuse javascript strings are arrays.
 		//to split the letters, we need to first split what ever the user input below
 		//then after spliting, we need map each of the letters   
@@ -147,8 +149,8 @@ class App extends Component {
 					
 				</div>
 		);
+		btnClass = classes.Red;
 		//update toggle person button when clickcked
-		style.backgroundColor = 'red'; //mmx
 		// ///using radium feature ability to assign a property on css sudo selector
 		// style[':hover'] = {
 		// 	backgroundColor : 'lightred',
@@ -170,7 +172,7 @@ class App extends Component {
 		assignedClasses.push( classes.bold ); //classes = ['red', 'bold'];
 	}
     return (
-      <div className="{classes.App}">
+      <div className={classes.App}>
         <h1> Hi, Im a react app </h1>
         <p className={assignedClasses.join(' ')}> This is really working! </p>
 		{/* creating an input field with a change listerner below */}
@@ -183,7 +185,7 @@ class App extends Component {
 		<Validation inputLength={this.state.userInput.length}/>
 		{eachString}
 
-        <button style={style} onClick={this.togglePersonsHandler}> Toggle Person</button>
+        <button className={classes.btnClass} onClick={this.togglePersonsHandler}> Toggle Person</button>
 
 
 		{/* component Person is a nested child component under the root/the parent component named "app"  */}
