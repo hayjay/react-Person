@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import classes from './App.css'; //becus weve manipulated the config vars ..
 //such as webpack.config.js which would allow us use any of the css classes in an object..
 //  format like classes.classname declared in the css files basically, css loader allows us to do this.
-import Person from './Person/Person'; //importing component name from the folder name Person
-import Validation from './Validation/Validation';
-import Char from './Char/Char';
+import Persons from '../components/Persons/Persons'; //importing component name from the folder name Person
+import Validation from '../components/Validation/Validation';
+import Char from '../components/Char/Char';
+import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import Cockpit from '../components/Cockpit/Cockpit';
+
+//NOTE THAT A CONTAINER MANAGES THE STATE AND FUNCTION OF AN APPLICATION
 class App extends Component {
 	state = {
 		persons: [
@@ -36,12 +40,10 @@ class App extends Component {
 		});
 	}
 
-	
-
 	nameChangedHandler = (event, person_id) => {
 		//assigning the default persons array to a variable (persons) and looping through to find if the array of the persons matches the id passed in from the textbox
 		const personIndex = this.state.persons.findIndex((person) => { //find index helps find the index of an array and execute the find on each element of the array
-			return person.id === person_id; //returns true if the currently iterated findIndex person.id = the id passed in from the function
+			return person.userId === person_id; //returns true if the currently iterated findIndex person.id = the id passed in from the function
 		});
 
 		//process of updating state again
@@ -131,25 +133,13 @@ class App extends Component {
 	let persons = null;
 
 	if( this.state.showPersons ){ //checks if showPersons object is true
-		persons = ( //asign jsX html code to persons
-				<div> 
-					{/* loop through the persons array using map method with a function (callback) inside the map menthod as the map syntax */}
-
-					{
-						this.state.persons.map((eachPerson, current_index) => { //eachPerson is an anonymous function to the map function
-							return <Person 
-										whenClicked = {() => this.deletePersonHandler(current_index)}
-										name={eachPerson.name}
-										age={eachPerson.age}
-										key={eachPerson.id} //to make sure and track the current index of each element we can manipulate with this
-										whenChanged={(event) => this.nameChangedHandler(event, eachPerson.id)}
-									/>
-						})
-					}
-					
-				</div>
-		);
-		btnClass = classes.Red;
+		persons = 
+					// /* loop through the persons array using map method with a function (callback) inside the map menthod as the map syntax */}
+					<Persons 
+						persons={this.state.persons}
+						clicked={this.deletePersonHandler}
+						changed={this.nameChangedHandler} />;
+						// btnClass = classes.Red;
 		//update toggle person button when clickcked
 		// ///using radium feature ability to assign a property on css sudo selector
 		// style[':hover'] = {
@@ -162,32 +152,12 @@ class App extends Component {
 	//which basically returns an array
 
 	// ADDING CLASS TO REACT JS DYNAMICALLY WITH AN IF STATEMENT 
-	const assignedClasses = [];
-
-	if(this.state.persons.length <= 2){
-		assignedClasses.push( classes.red ); //classes  = ['red'];
-	}
-
-	if( this.state.persons.length <= 1){ //we refused to use elseif becus we want the two conditions to work
-		assignedClasses.push( classes.bold ); //classes = ['red', 'bold'];
-	}
+	
     return (
       <div className={classes.App}>
-        <h1> Hi, Im a react app </h1>
-        <p className={assignedClasses.join(' ')}> This is really working! </p>
-		{/* creating an input field with a change listerner below */}
-		<hr/>
-		<input type="text" name="" onChange={this.changeInput} value={this.state.userInput}/>
-
-		<p> {this.state.userInput} </p>
-
-		{/* the below validation component recieves the text length as a prop */}
-		<Validation inputLength={this.state.userInput.length}/>
-		{eachString}
-
-        <button className={classes.btnClass} onClick={this.togglePersonsHandler}> Toggle Person</button>
-
-
+		<Cockpit 
+			showPersons={this.state.showPersons}
+			persons={this.state.persons}/>
 		{/* component Person is a nested child component under the root/the parent component named "app"  */}
 		{/* each child or parent component needs to return / render some JSX CODE*/}
 		{/* JSX is just a js syntactic sugar that allows u to write htmlish code instead of nested React.createElement calls */}
